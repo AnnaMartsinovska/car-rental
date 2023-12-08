@@ -1,8 +1,36 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { carsReducer } from "./cars/carsSlice";
+import { catalogReducer } from "./cars/catalogSlice";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
+const persistConfig = {
+  key: "favorites",
+  version: 1,
+  storage,
+  whitelist: [],
+};
+
+const persistedReducer = persistReducer(persistConfig, catalogReducer);
 
 export const store = configureStore({
   reducer: {
-    cars: carsReducer,
+    cars: persistedReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
+
+export const persistor = persistStore(store);

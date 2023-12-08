@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  make: "",
-  price: "",
-  mileage: 0,
+  // make: "",
+  // price: "",
+  // mileage: 0,
+  cars: [],
 };
 
-const carSlice = createSlice({
+const catalogSlice = createSlice({
   name: "cars",
   initialState,
   reducers: {
@@ -16,6 +17,6 @@ const carSlice = createSlice({
   },
 });
 
-export const { findMake, findPrice, mileageCheck } = carSlice.actions;
+export const { findMake, findPrice, mileageCheck } = catalogSlice.actions;
 
-export const carsReducer = carSlice.reducer;
+export const catalogReducer = catalogSlice.reducer;
