@@ -1,13 +1,27 @@
 import { useEffect } from "react";
-import { fetchCarsThunk } from "../redux/cars/operations";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getCatalogThunk } from "../redux/cars/operations";
+import { selectCatalog } from "../redux/cars/selectors";
 
 export const Catalog = () => {
   const dispatch = useDispatch();
+  const catalog = useSelector(selectCatalog);
 
   useEffect(() => {
-    dispatch(fetchCarsThunk());
+    dispatch(getCatalogThunk(1, 12));
   }, [dispatch]);
 
-  return <div></div>;
+  return (
+    <ul>
+      {catalog?.map((car) => (
+        <li key={car.id}>
+          <img src={car.img} alt={car.make} />
+          <h2>
+            {car.make} {car.model}, {car.year}
+          </h2>
+          <h2>{car.rentalPrice}</h2>
+        </li>
+      ))}
+    </ul>
+  );
 };
