@@ -17,7 +17,7 @@ export const getCatalogThunk = createAsyncThunk(
       });
       return data;
     } catch (error) {
-      thunkApi.rejectWithValue(error.message);
+      return thunkApi.rejectWithValue(error.message);
     }
   }
 );

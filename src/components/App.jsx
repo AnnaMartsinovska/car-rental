@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "./Layout";
 import { Homepage } from "../pages/Homepage";
-import { Catalog } from "../pages/Catalog";
+import { Catalog } from "../pages/Catalog/Catalog";
 import { Favorites } from "../pages/Favorites";
 import NotFound from "../pages/NotFound";
 
