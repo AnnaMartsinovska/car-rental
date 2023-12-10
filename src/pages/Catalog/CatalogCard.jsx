@@ -1,4 +1,9 @@
+import { useModal } from "../../hooks/useModal";
+import Modal from "../../components/modal/Modal";
+
 export const CatalogCard = ({ car }) => {
+  const [isOpen, openModal, closeModal] = useModal();
+
   return (
     <li key={car.id}>
       <img src={car.img} alt={car.make} />
@@ -14,7 +19,9 @@ export const CatalogCard = ({ car }) => {
         {car.mileage}
         {car.functionalities[0]}
       </p>
-      <button>Learn more</button>
+      <button onClick={openModal}>Learn more</button>
+
+      {isOpen && <Modal closeModal={closeModal} />}
     </li>
   );
 };
