@@ -1,37 +1,39 @@
 import { useEffect, useState } from "react";
+import { getCatalogThunk } from "../../redux/catalog/operations";
+import { CatalogCard } from "../../components/catalog/CatalogCard";
+import { Filters } from "../../components/filters/Filters";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCatalog } from "../../redux/catalog/selectors";
-import { getCatalogThunk } from "../../redux/catalog/operations";
-
-import { CatalogCard } from "./CatalogCard";
-import { Filters } from "./Filters";
+import { ButtonWrap, StyledLoadMore } from "./Catalog.styled";
 
 export const Catalog = () => {
+  const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const catalog = useSelector(selectCatalog);
-  const [limit, setLimit] = useState(12);
 
   useEffect(() => {
     const params = {
-      page: 1,
-      limit,
+      page,
+      limit: 12,
     };
     dispatch(getCatalogThunk(params));
-  }, [dispatch, limit]);
+  }, [dispatch, page]);
 
   const handleLoadMore = () => {
-    setLimit((prevLimit) => prevLimit + 12);
+    setPage((prev) => prev + 1);
   };
 
   return (
-    <div>
+    <>
       <Filters />
-      <ul>
-        {catalog?.map((car) => (
-          <CatalogCard car={car} />
-        ))}
-      </ul>
-      <button onClick={handleLoadMore}>Load more</button>
-    </div>
+      <CatalogCard handleLoadMore={handleLoadMore} />
+      {catalog.length >= 32 ? null : (
+        <ButtonWrap>
+          <StyledLoadMore type="button" onClick={handleLoadMore}>
+            Load more
+          </StyledLoadMore>
+        </ButtonWrap>
+      )}
+    </>
   );
 };

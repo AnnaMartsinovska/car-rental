@@ -1,26 +1,37 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  filter: "",
-  favorites: [],
+  filter: {
+    make: "",
+    rentalPrice: 0,
+    mileageFrom: 0,
+    mileageTo: 0,
+  },
+  allCar: [],
+  isLoading: false,
+  error: null,
 };
 
 const filterSlice = createSlice({
   name: "filter",
   initialState,
   reducers: {
-    filtering: (state, { payload }) => {
-      state.filter = payload;
+    filterMake: (state, { payload }) => {
+      state.filter.make = payload;
     },
-    addFavorite: (state, { payload }) => {
-      state.favorites.push(payload);
+    filterPrice: (state, { payload }) => {
+      state.filter.rentalPrice = payload;
     },
-    deleteFavorite: (state, { payload }) => {
-      state.favorites = state.favorites.filter((fav) => fav.id !== payload.id);
+    filterMileageFrom: (state, { payload }) => {
+      state.filter.mileageFrom = Number(payload);
+    },
+    filterMileageTo: (state, { payload }) => {
+      state.filter.mileageTo = Number(payload);
     },
   },
 });
 
-export const { filtering, addFavorite, deleteFavorite } = filterSlice.actions;
+export const { filterMake, filterPrice, filterMileageFrom, filterMileageTo } =
+  filterSlice.actions;
 
 export const filterReducer = filterSlice.reducer;

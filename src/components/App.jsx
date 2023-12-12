@@ -1,15 +1,25 @@
 import { Route, Routes } from "react-router-dom";
-import { Layout } from "./Layout";
-import { Homepage } from "../pages/Homepage";
+
+import { Layout } from "./layout/Layout";
+import { Homepage } from "../pages/Homepage/Homepage";
 import { Catalog } from "../pages/Catalog/Catalog";
-import { Favorites } from "../pages/Favorites";
-import NotFound from "../pages/NotFound";
+import { Favorites } from "../pages/Favorites/Favorites";
+import NotFound from "../pages/NotFound/NotFound";
+import { Suspense } from "react";
+import Loader from "./loader/Loader";
 
 const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Layout />
+            </Suspense>
+          }
+        >
           <Route index element={<Homepage />} />
           <Route path="catalog" element={<Catalog />} />
           <Route path="favorites" element={<Favorites />} />
