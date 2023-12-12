@@ -16,6 +16,7 @@ import {
   StyledImgBox,
   StyledInfoTitle,
   StyledItem,
+  StyledLinkNumber,
   StyledModalContent,
   StyledProperty,
   StyledRental,
@@ -154,9 +155,11 @@ const Modal = ({ closeModal, car, index }) => {
               </RentalList>
             </div>
 
-            <a href="tel:+380730000000">
-              <StyledRentalBtn type="button">Rental car</StyledRentalBtn>
-            </a>
+            <StyledRentalBtn type="button">
+              <StyledLinkNumber href="tel:+380730000000">
+                Rental car
+              </StyledLinkNumber>
+            </StyledRentalBtn>
           </StyledItem>
         </StyledModalContent>
       </ContentWrapper>

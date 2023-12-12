@@ -5,26 +5,23 @@ export const StyledWrapper = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10;
 `;
 
 export const ContentWrapper = styled.div`
   position: relative;
-  background-color: var(--White);
-  border: 1px solid var(--Text-halb);
+  background-color: #fafafa;
+  border: 1px solid #12141780;
   padding: 37px;
   overflow: hidden;
+  overflow-y: auto;
   border-radius: 30px;
   width: 541px;
-  height: 752px;
-  @media (max-width: 767px) {
-    width: 335px;
-  }
+  height: 100vh;
 `;
 
 export const StyledCloseButton = styled.button`
@@ -40,10 +37,10 @@ export const StyledCloseButton = styled.button`
 `;
 
 export const StyledSvgUser = styled.svg`
-  stroke: var(--Text);
+  stroke: #121417;
   &:hover,
   &:focus {
-    stroke: var(--Text-halb);
+    stroke: #12141780;
     transition: background-color 500ms ease-in-out;
     transform: scale(1.2);
   }
@@ -56,8 +53,8 @@ export const StyledRentalBtn = styled.button`
   min-width: 168px;
   border-radius: 12px;
   margin: 0 auto;
-  color: var(--White);
-  background-color: var(--accent-color);
+  color: #fafafa;
+  background-color: #3470ff;
   text-align: center;
   font-size: 14px;
   font-weight: 600;
@@ -66,7 +63,7 @@ export const StyledRentalBtn = styled.button`
 
   &:hover,
   &:focus {
-    background-color: var(--accent-color-hover);
+    background-color: #0b44cd;
   }
 `;
 export const StyledModalContent = styled.ul`
@@ -113,7 +110,6 @@ export const StyledDescription = styled.p`
   color: rgba(18, 20, 23, 0.5);
 
   font-size: 10px;
-  font-style: normal;
   font-weight: 400;
   line-height: 18px;
   padding-right: 6px;
@@ -136,7 +132,6 @@ export const StyledBoxAccessories = styled.div`
 export const StyledAccessories = styled.p`
   margin-bottom: 8px;
   font-size: 14px;
-  font-style: normal;
   font-weight: 500;
   line-height: 20px;
 `;
@@ -144,7 +139,6 @@ export const StyledAccessories = styled.p`
 export const StyledSpan = styled.span`
   color: rgba(18, 20, 23, 0.5);
   font-size: 12px;
-  font-style: normal;
   font-weight: 400;
   line-height: 18px;
   padding-right: 6px;
@@ -156,7 +150,6 @@ export const RentalList = styled.ul`
 export const StyledRental = styled.p`
   margin-bottom: 14px;
   font-size: 14px;
-  font-style: normal;
   font-weight: 500;
   line-height: 20px;
 `;
@@ -201,4 +194,9 @@ export const StyledInfoTitle = styled.div`
 `;
 export const StyledItem = styled.li`
   list-style: none;
+`;
+
+export const StyledLinkNumber = styled.a`
+  text-decoration: none;
+  color: #fafafa;
 `;
