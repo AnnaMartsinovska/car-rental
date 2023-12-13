@@ -31,6 +31,12 @@ export const FavoritesCars = ({ dote, handleLoadMore }) => {
   const { isOpen, openModal, closeModal } = useModal();
   const dispatch = useDispatch();
   const [like, setLike] = useState(null);
+  const [selectedCar, setSelectedCar] = useState(null);
+
+  const openModalCar = (car, index) => {
+    setSelectedCar({ car, index });
+    openModal();
+  };
 
   const toggleFavorites = (car, index) => {
     const setFavorite = favorites.some((fav) => fav.id === car.id);
@@ -86,10 +92,13 @@ export const FavoritesCars = ({ dote, handleLoadMore }) => {
                 <StyledInfoText>{dote(car.mileage)} |</StyledInfoText>
                 <StyledInfoText>{car.functionalities[0]} |</StyledInfoText>
               </StyledInfo>
-              <StyledButton onClick={() => openModal(car, index)}>
+              <StyledButton
+                type="button"
+                onClick={() => openModalCar(car, index)}
+              >
                 Learn more
               </StyledButton>
-              {isOpen ? (
+              {isOpen && selectedCar && selectedCar.index === index ? (
                 <Modal closeModal={closeModal} car={car} index={index} />
               ) : null}
             </StyledCardWraper>

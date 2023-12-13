@@ -41,6 +41,12 @@ export const CatalogCard = () => {
   const mileageFrom = useSelector(selectMileageFrom);
   const mileageTo = useSelector(selectMileageTo);
   const filterValue = useSelector(selectMake);
+  const [selectedCar, setSelectedCar] = useState(null);
+
+  const openModalCar = (car, index) => {
+    setSelectedCar({ car, index });
+    openModal();
+  };
 
   const getFilteredCars = () => {
     let filteredCars = catalog.slice();
@@ -131,10 +137,13 @@ export const CatalogCard = () => {
                 <StyledInfoText>{dote(car.mileage)} |</StyledInfoText>
                 <StyledInfoText>{car.functionalities[0]} |</StyledInfoText>
               </StyledInfo>
-              <StyledButton onClick={() => openModal(car, index)}>
+              <StyledButton
+                type="button"
+                onClick={() => openModalCar(car, index)}
+              >
                 Learn more
               </StyledButton>
-              {isOpen ? (
+              {isOpen && selectedCar && selectedCar.index === index ? (
                 <Modal closeModal={closeModal} car={car} index={index} />
               ) : null}
             </StyledCardWraper>
