@@ -5,8 +5,8 @@ export const StyledWrapper = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,10 +18,9 @@ export const ContentWrapper = styled.div`
   border: 1px solid #12141780;
   padding: 37px;
   overflow: hidden;
-  overflow-y: auto;
   border-radius: 30px;
   width: 541px;
-  height: 100vh;
+  height: 752px;
 `;
 
 export const StyledCloseButton = styled.button`
